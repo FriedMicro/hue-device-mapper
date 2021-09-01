@@ -38,16 +38,18 @@ const getActions = (bridgeData, group) => {
 
 export default (bridgeData) => {
     const rawGroupData = bridgeData.groups;
-    const groupsParsed = {};
+    const groupsParsed = [];
     for(const groupKey in rawGroupData){
         const group = rawGroupData[groupKey];
         group.id = groupKey;
         const groupKeyParsed = getGroupKey(group);
-        groupsParsed[groupKeyParsed] = {
+        groupsParsed.push({
             lightIds: group.lights,
-            id: groupKey,
+            manufactuer: "Philips Hue",
+            display: `Hue: ${group.name}`,
+            id: groupKeyParsed,
             action: getActions(bridgeData, group)
-        }
+        });
     }
     return groupsParsed;
 }

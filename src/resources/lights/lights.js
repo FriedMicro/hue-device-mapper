@@ -1,4 +1,5 @@
-import actions from "./actions.js"
+import actions from "./actions.js";
+import getState from "./state.js";
 
 //remove v2, v3, etc
 const cleanVersioning = (name) => {
@@ -20,23 +21,17 @@ const getLightKey = (light) => {
 
 export default (bridgeData) => {
     const rawLightData = bridgeData.lights;
-    const lightsParsed = {};
+    const lightsParsed = [];
     for(const lightKey in rawLightData){
         const light = rawLightData[lightKey];
         const lightKeyParsed = getLightKey(light);
-        lightsParsed[lightKeyParsed] = {
-            state: {
-                on: light.state.on,
-                bri: light.state.bri,
-                hue: light.state.hue,
-                sat: light.state.sat,
-                reachable: light.state.reachable
-            },
+        lightsParsed.push({
+            data: getState(lightKey),
             actions: actions(lightKey),
-            id: lightKey,
-            product: light.productname,
-            supportsColor: light.state.hue ? true : false
-        }
+            manufactuer: "Philips Hue",
+            id: lightKeyParsed,
+            display: `Hue: ${light.name} (${light.productname})`
+        });
     }
     return lightsParsed;
 }
