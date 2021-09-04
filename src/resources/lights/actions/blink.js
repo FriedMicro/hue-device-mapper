@@ -16,7 +16,7 @@ export default (lightEndpoint) => {
                 bri: 0
             },
             method: "put",
-            delay: 100,
+            delay: 1000,
             condition: "state.on == true"
         },
         {
@@ -25,7 +25,7 @@ export default (lightEndpoint) => {
                 bri: 254
             },
             method: "put",
-            delay: 200,
+            delay: 2000,
             condition: "state.on == true"
         },
         {
@@ -34,7 +34,7 @@ export default (lightEndpoint) => {
                 bri: 0
             },
             method: "put",
-            delay: 300,
+            delay: 3000,
             condition: "state.on == true"
         },
         {
@@ -43,7 +43,7 @@ export default (lightEndpoint) => {
                 bri: 254
             },
             method: "put",
-            delay: 400,
+            delay: 4000,
             condition: "state.on == true"
         },
         {
@@ -52,7 +52,16 @@ export default (lightEndpoint) => {
                 bri: 0
             },
             method: "put",
-            delay: 500,
+            delay: 5000,
+            condition: "state.on == true"
+        },
+        {
+            url: lightEndpoint,
+            params: {
+                bri: 254
+            },
+            method: "put",
+            delay: 6000,
             condition: "state.on == true"
         }
     ]
