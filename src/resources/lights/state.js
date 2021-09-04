@@ -3,7 +3,7 @@ import getBaseUrl from "../../hue/getBaseUrl.js";
 export default (lightId) => {
 
     const getData = (data) => {
-        const light = data.response;
+        const light = data;
         return {
             state: {
                 on: light.state.on,
