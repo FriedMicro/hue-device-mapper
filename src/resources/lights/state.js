@@ -12,7 +12,6 @@ export default (lightId) => {
                 sat: light.state.sat,
                 reachable: light.state.reachable
             },
-            id: lightId,
             product: light.productname,
             supportsColor: light.state.hue ? true : false
         }
