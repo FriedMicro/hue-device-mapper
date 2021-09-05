@@ -48,7 +48,7 @@ export default (bridgeData) => {
             manufactuer: "Philips Hue",
             display: `Hue: ${group.name}`,
             id: groupKeyParsed,
-            action: getActions(bridgeData, group)
+            actions: getActions(bridgeData, group)
         });
     }
     return groupsParsed;
