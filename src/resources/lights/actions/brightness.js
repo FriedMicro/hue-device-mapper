@@ -13,7 +13,7 @@ export default (lightEndpoint) => {
         url: lightEndpoint,
         params: {
             on: true,
-            brit: "params.brit"
+            bri: "params.bri"
         },
         method: "put",
         paramFunc: calcFunc.toString()
