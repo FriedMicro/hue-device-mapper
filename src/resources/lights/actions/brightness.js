@@ -5,7 +5,7 @@ export default (lightEndpoint) => {
     const calcFunc = (params) => {
         const brit = params.brit;
         const hueBrit = Math.round(brit * (254 / 100));
-        params.brit = hueBrit;
+        params.bri = hueBrit;
         return params;
     }
 
