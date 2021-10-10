@@ -1,4 +1,4 @@
-import getAction from "../lights/actions.js";
+import { groupLightAction } from "../lights/actions.js";
 import getScenes from "../scenes/scenes.js";
 import getSceneActions from "../scenes/actions.js";
 import _ from "lodash";
@@ -14,8 +14,8 @@ const getActions = (bridgeData, group) => {
     const rawActions = [];
     const scenes = getScenes(bridgeData, group.id);
     const sceneActions = getSceneActions(scenes);
-    for(const light of lightIds) {
-        const lightActions = getAction(light);
+    for (const light of lightIds) {
+        const lightActions = groupLightAction(light);
         rawActions.push(lightActions);
     }
     let parsedActions = {
@@ -24,7 +24,7 @@ const getActions = (bridgeData, group) => {
         blink: [],
         brightness: []
     };
-    for(const action of rawActions){
+    for (const action of rawActions) {
         parsedActions = {
             on: [...action.on, ...parsedActions.on],
             off: [...action.off, ...parsedActions.off],
@@ -39,7 +39,7 @@ const getActions = (bridgeData, group) => {
 export default (bridgeData) => {
     const rawGroupData = bridgeData.groups;
     const groupsParsed = [];
-    for(const groupKey in rawGroupData){
+    for (const groupKey in rawGroupData) {
         const group = rawGroupData[groupKey];
         group.id = groupKey;
         const groupKeyParsed = getGroupKey(group);
