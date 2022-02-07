@@ -1,8 +1,7 @@
 import axios from "axios";
-import fs from "fs";
 import getBaseUrl from "./hue/getBaseUrl.js";
-import getLights from "./resources/lights/lights.js";
-import getGroups from "./resources/groups/groups.js"
+import fs from "fs";
+import resources from "./resources/index.js";
 
 const baseUrl = getBaseUrl();
 const getBridgeData = ()=> {
@@ -17,11 +16,14 @@ const getBridgeData = ()=> {
 
 const main = () => {
     getBridgeData().then((data) => {
-        const hue = {
-            lights: getLights(data),
-            groups: getGroups(data)
-        }
-        fs.writeFileSync("hue.json", JSON.stringify(hue));
+        // console.log(data);
+        // const hue = {
+        //     lights: getLights(data),
+        //     // groups: getGroups(data)
+        // }
+        const hueResources = resources(data);
+        console.log(hueResources);
+        fs.writeFileSync("hue.json", JSON.stringify(hueResources));
     });
 }
 
